@@ -30,27 +30,47 @@
     <meta name="application-name" content="Video Player Games">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script>
+        function getUrlVars() {
+            var vars = {};
+            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
 
+        function getUrlParam(parameter, defaultvalue) {
+            return window.location.href.indexOf(parameter) > -1 ? getUrlVars()[parameter] : defaultvalue;
+        }
+
+        var ero = getUrlParam('ero', null);
+        var encryptero = decodeURIComponent(ero); // PENTING: Validasi dan sanitasi di sisi server!
+        var eros = "<video id='player' autoplay controls playsinline webkit-playsinline controlsList='nodownload' oncontextmenu='return false;' src='https://" + encryptero + ".mp4' width='100%' type='video/mp4'></video>";
+    </script>
     <style>
-        body {
+       /* ... (CSS Anda) ... */
+       body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            /* align-items: center;  Ini tidak diperlukan karena Anda menggunakan <center> dan flexbox */
             margin: 0;
             padding: 0;
+            display: flex; /* Tambahkan ini */
+            flex-direction: column; /* Tambahkan ini */
+            min-height: 100vh; /* Tambahkan Ini, memastikan body minimal setinggi viewport */
         }
+
 
         .movie-posters {
             display: flex;
             justify-content: center;
         }
 
-        .movie-posters img { /*  Gambar ini tidak digunakan di HTML Anda saat ini */
+        .movie-posters img {
             width: 320px;
             height: 200px;
             /* Jika Anda menambahkan gambar, aktifkan lazy loading: */
-            loading="lazy";  /* Tambahkan atribut loading="lazy" */
+            /* loading="lazy" */
         }
 
         .profile {
@@ -63,6 +83,8 @@
             height: 100px;
             border-radius: 50%;
         }
+
+        /* .profile p  tidak digunakan */
 
         .buttons {
             display: flex;
@@ -83,89 +105,53 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             font-size: 16px;
-             transition: background-color 0.3s ease; /* Efek transisi */
         }
-        .buttons a:hover{
-            background-color: #ddd;
-        }
-
-        /* Gaya untuk iklan */
-        .ad-banner {
-            display: flex;
-            justify-content: center; /* Pusatkan iklan secara horizontal */
-            margin-bottom: 20px; /* Beri jarak antara iklan dan konten lainnya */
-
+        .ads-container {
+            width: 100%; /* Pastikan iklan mengisi lebar */
+            text-align: center; /* Pusatkan iklan */
+            margin-bottom: 20px; /* Margin bawah */
         }
 
     </style>
 </head>
 <body>
-    <div class="ad-banner">
+    <div class="ads-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
+                crossorigin="anonymous"></script>
+        <!-- banner -->
         <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-8391255860930347"
-             data-ad-slot="6458585847"></ins>
+            style="display:inline-block;width:728px;height:90px"
+            data-ad-client="ca-pub-8391255860930347"
+            data-ad-slot="6458585847"></ins>
         <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
-
     <div class="movie-posters">
-        <video id='player' autoplay controls playsinline webkit-playsinline controlsList='nodownload' oncontextmenu='return false;' width='100%' type='video/mp4'></video>
+        <script>
+            if (ero != null) {
+                document.write(eros);
+            }
+        </script>
     </div>
-
     <div class="profile">
         <img alt="Profile hotmovieshd" src="https://s3.ap-southeast-1.amazonaws.com/assets.lynk.id/profile/05-11-2024/1730777855955_6908404">
     </div>
-
     <div class="buttons">
         <a href="https://t.me/group_lk21">Join Group Telegram</a>
     </div>
-
-    <div class="ad-banner">
-
+    <div class="ads-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
+                crossorigin="anonymous"></script>
+        <!-- banner -->
         <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-8391255860930347"
-             data-ad-slot="2845977612"></ins>
+            style="display:inline-block;width:728px;height:90px"
+            data-ad-client="ca-pub-8391255860930347"
+            data-ad-slot="2845977612"></ins>
         <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        function getUrlVars() {
-            var vars = {};
-            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-                vars[key] = value;
-            });
-            return vars;
-        }
-
-        function getUrlParam(parameter, defaultvalue) {
-            return window.location.href.indexOf(parameter) > -1 ? getUrlVars()[parameter] : defaultvalue;
-        }
-
-        var ero = getUrlParam('ero', null);
-        // PENTING: Validasi dan sanitasi di sisi server!  Jangan pernah percaya input dari client.
-        // Contoh:
-        if (ero) {
-            var encryptero = decodeURIComponent(ero);
-            // Sanitasi lebih lanjut diperlukan di sini.  Contoh:  Pastikan encryptero HANYA berisi karakter yang diizinkan.
-            //  Regex bisa digunakan, tapi pastikan regex-nya sangat ketat.
-            //  Lebih baik lagi, gunakan mekanisme yang lebih aman daripada meneruskan URL langsung melalui parameter.
-            if (/^[a-zA-Z0-9]+$/.test(encryptero)) { // Contoh sanitasi yang SANGAT sederhana.  Ini hanya mengizinkan huruf dan angka.
-              document.getElementById('player').src = "https://" + encryptero + ".mp4";
-            } else {
-               // Tangani kasus di mana input tidak valid.  Tampilkan pesan kesalahan, redirect, dll.
-               document.getElementById('player').src = ""; // Atau URL video default yang aman.
-               console.error("Invalid 'ero' parameter:", encryptero);
-            }
-        }
-
-
-    </script>
 </body>
 </html>
