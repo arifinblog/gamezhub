@@ -44,9 +44,9 @@
             return window.location.href.indexOf(parameter) > -1 ? getUrlVars()[parameter] : defaultvalue;
         }
 
-        var ero = getUrlParam('ero', null);
-        var encryptero = decodeURIComponent(ero); // PENTING: Validasi dan sanitasi di sisi server!
-        var eros = "<video id='player' autoplay controls playsinline webkit-playsinline controlsList='nodownload' oncontextmenu='return false;' src='https://" + encryptero + ".mp4' width='100%' type='video/mp4'></video>";
+        var film = getUrlParam('film', null);
+        var encryptfilm = decodeURIComponent(film); // PENTING: Validasi dan sanitasi di sisi server!
+        var films = "<video id='player' autoplay controls playsinline webkit-playsinline controlsList='nodownload' oncontextmenu='return false;' src='" + encryptfilm + "' width='100%' type='video/mp4'></video>";
     </script>
     <style>
        /* ... (CSS Anda) ... */
@@ -71,17 +71,6 @@
             height: 200px;
             /* Jika Anda menambahkan gambar, aktifkan lazy loading: */
             /* loading="lazy" */
-        }
-
-        .profile {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .profile img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
         }
 
         /* .profile p  tidak digunakan */
@@ -129,13 +118,10 @@
     </div>
     <div class="movie-posters">
         <script>
-            if (ero != null) {
-                document.write(eros);
+            if (film != null) {
+                document.write(films);
             }
         </script>
-    </div>
-    <div class="profile">
-        <img alt="Profile hotmovieshd" src="https://s3.ap-southeast-1.amazonaws.com/assets.lynk.id/profile/05-11-2024/1730777855955_6908404">
     </div>
     <div class="buttons">
         <a href="https://t.me/group_lk21">Join Group Telegram</a>
