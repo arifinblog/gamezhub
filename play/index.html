@@ -5,7 +5,7 @@
     <title>Video Player Games</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="user-signed-in" content="false">
-    <meta name="head-cached-at" content="1733144934">  <!-- Pertimbangkan untuk menghapus ini jika tidak digunakan -->
+    <!-- <meta name="head-cached-at" content="1733144934">  Hapus jika tidak digunakan -->
     <meta name="environment" content="production">
     <meta name="google-adsense-account" content="ca-pub-8391255860930347">
     <link rel="canonical" href="https://gamezhub.pages.dev/">
@@ -31,8 +31,9 @@
     <meta name="application-name" content="Video Player Games">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
-     crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">  <!-- Pindahkan CSS ke head -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Pindahkan JS yang tidak async ke sebelum </body> -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347" crossorigin="anonymous"></script>
     <script>
         function getUrlVars() {
             var vars = {};
@@ -47,7 +48,7 @@
         }
 
         var ero = getUrlParam('ero', null);
-        var encryptero = decodeURIComponent(ero);  //Pastikan variabel ini aman dari sisi server
+        var encryptero = decodeURIComponent(ero); // PENTING: Validasi dan sanitasi di sisi server!
         var eros = "<video id='player' autoplay controls playsinline webkit-playsinline controlsList='nodownload' oncontextmenu='return false;' src='https://" + encryptero + ".mp4' width='100%' type='video/mp4'></video>";
     </script>
     <style>
@@ -69,8 +70,8 @@
         .movie-posters img {
             width: 320px;
             height: 200px;
-            /* Pertimbangkan lazy loading di sini jika ada banyak gambar */
-            /* loading="lazy"  <- Tambahkan ini */
+            /* Jika Anda menambahkan gambar, aktifkan lazy loading: */
+            /* loading="lazy" */
         }
 
         .profile {
@@ -84,11 +85,7 @@
             border-radius: 50%;
         }
 
-        .profile p { /* Anda tidak memiliki elemen <p> dalam profil, jadi ini mungkin tidak diperlukan */
-            margin: 10px 0 0 0;
-            font-size: 18px;
-            color: #333;
-        }
+        /* .profile p  tidak digunakan */
 
         .buttons {
             display: flex;
@@ -113,18 +110,6 @@
     </style>
 </head>
 <body>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
-     crossorigin="anonymous"></script>
-<!-- Banner Atas -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8391255860930347"
-     data-ad-slot="2845977612"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
     <div class="movie-posters">
         <script>
             if (ero != null) {
@@ -138,17 +123,35 @@
     <div class="buttons">
         <a href="https://t.me/group_lk21">Join Group Telegram</a>
     </div>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
-     crossorigin="anonymous"></script>
-<!-- Banner Atas -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8391255860930347"
-     data-ad-slot="2845977612"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
+     <!-- Banner Atas (ID unik) -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8391255860930347"
+         data-ad-slot="2845977612"
+         data-ad-format="auto"
+         data-full-width-responsive="true"
+         id="banner-atas"></ins>
+
+    <!-- Banner Bawah (ID unik) -->
+    <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-8391255860930347"
+            data-ad-slot="2845977612"  <!-- Gunakan slot yang berbeda jika perlu -->
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+            id="banner-bawah"></ins>
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            element: document.getElementById("banner-atas")
+        });
+        (adsbygoogle = window.adsbygoogle || []).push({
+            element: document.getElementById("banner-bawah")
+        });
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </body>
 </html>
