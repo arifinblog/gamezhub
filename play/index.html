@@ -46,7 +46,7 @@
 
         var film = getUrlParam('film', null);
         var encryptfilm = decodeURIComponent(film); // PENTING: Validasi dan sanitasi di sisi server!
-        var films = "<video id='player' autoplay controls playsinline webkit-playsinline controlsList='nodownload' oncontextmenu='return false;' src='" + encryptfilm + "' width='100%' type='video/mp4'></video>";
+        var films = "<video id='player' controls controlsList='nodownload' oncontextmenu='return false;' src='" + encryptfilm + "' width='100%' type='video/mp4'></video>";
     </script>
     <style>
        /* ... (CSS Anda) ... */
