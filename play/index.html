@@ -1,53 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: https://ogp.me/ns#" itemscope itemtype="https://schema.org/Game">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Video Player Games</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="user-signed-in" content="false">
-    <meta name="environment" content="production">
     <meta name="google-adsense-account" content="ca-pub-8391255860930347">
-    <link rel="canonical" href="https://gamezhub.pages.dev/">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <meta name="google-site-verification" content="pk2H2Uweo_VC_RYRIG1hFzlAGtuJN6UVL3a4tMtd4rM">
-    <meta name="description" content="Video player game, short video, movie video, film games.">
-    <meta name="keywords" content="Video Player Games, game defense, HTML games code, HTML games download, HTML games code free, HTML games code copy and paste, HTML games online, HTML game links, HTML game player, HTML games for beginners, permainan seru, game pertahanan, pemanah, game semua umur">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gamezhub.pages.dev/">
-    <meta property="og:title" content="Video Player Games">
-    <meta property="og:image" content="https://gamezhub.pages.dev/Pictures/thumb.png">
-    <meta property="og:description" content="Video player game, short video, movie video, film games.">
-    <meta property="og:site_name" content="Video Player Games">
-    <meta name="twitter:site" content="@thepracticaldev">
-    <meta name="twitter:title" content="Video Player Games">
-    <meta name="twitter:description" content="Video player game, short video, movie video, film games.">
-    <meta name="twitter:image:src" content="https://gamezhub.pages.dev/Pictures/thumb.png">
-    <meta name="robots" content="NOODP,INDEX,FOLLOW,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" type="image/x-icon" href="https://gamezhub.pages.dev/Pictures/logo.png">
-    <link rel="apple-touch-icon" href="https://gamezhub.pages.dev/Pictures/logo.png">
-    <meta name="apple-mobile-web-app-title" content="Video Player Games">
-    <meta name="application-name" content="Video Player Games">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <script>
-        function getUrlVars() {
-            var vars = {};
-            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-                vars[key] = value;
-            });
-            return vars;
-        }
-
-        function getUrlParam(parameter, defaultvalue) {
-            return window.location.href.indexOf(parameter) > -1 ? getUrlVars()[parameter] : defaultvalue;
-        }
-
-        var film = getUrlParam('film', null);
-        var encryptfilm = decodeURIComponent(film); // PENTING: Validasi dan sanitasi di sisi server!
-        var films = "<video id='player' controls controlsList='nodownload' oncontextmenu='return false;' src='" + encryptfilm + "' width='100%' type='video/mp4'></video>";
-    </script>
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <style>
        body {
             font-family: Arial, sans-serif;
@@ -67,7 +25,6 @@
         .movie-posters img {
             width: 320px;
             height: 200px;
-            /* Jika Anda menambahkan gambar, aktifkan lazy loading: */
             /* loading="lazy" */
         }
 
@@ -98,25 +55,56 @@
         }
         /* Optimasi Tata Letak Iklan */
         .ads-container-top {
-          margin-top: 10px; /* Sedikit ruang di atas */
+          margin-top: 10px;
         }
 
         .ads-container-bottom {
-          margin-bottom: 10px; /* Sedikit ruang di bawah */
+          margin-bottom: 10px;
         }
 
         .video-ad-container {
-            position: relative; /* Penting untuk penempatan iklan di atas video */
+            position: relative;
             width: 100%;
+        }
+        /* Plyr Overrides */
+        .plyr--video.plyr--paused .plyr__controls {
+            display: flex !important;
+        }
+        .video-ad-container .ads-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
         }
 
     </style>
+
+    <script>
+        function getUrlVars() {
+            var vars = {};
+            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        function getUrlParam(parameter, defaultvalue) {
+            return window.location.href.indexOf(parameter) > -1 ? getUrlVars()[parameter] : defaultvalue;
+        }
+        var film = getUrlParam('film', null);
+        var encryptfilm = decodeURIComponent(film);
+    </script>
 </head>
 <body>
     <div class="ads-container ads-container-top">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
                 crossorigin="anonymous"></script>
-        <!-- banner atas -->
         <ins class="adsbygoogle"
             style="display:inline-block;width:728px;height:90px"
             data-ad-client="ca-pub-8391255860930347"
@@ -128,16 +116,14 @@
 
     <div class="video-ad-container">
         <div class="movie-posters">
-            <script>
-                if (film != null) {
-                    document.write(films);
-                }
-            </script>
+            <video id="player" width="100%">
+                <source id="video-source" src="" type="video/mp4">
+            </video>
         </div>
-          <div class="ads-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: flex; justify-content: center; align-items: center;">
+
+        <div class="ads-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; display: flex; justify-content: center; align-items: center; pointer-events: none;">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
-                    crossorigin="anonymous"></script>
-            <!-- Iklan di atas Video (Responsif) -->
+                crossorigin="anonymous"></script>
             <ins class="adsbygoogle"
                 style="display:block"
                 data-ad-client="ca-pub-8391255860930347"
@@ -155,9 +141,8 @@
     </div>
 
     <div class="ads-container ads-container-bottom">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
+         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8391255860930347"
                 crossorigin="anonymous"></script>
-        <!-- banner bawah -->
         <ins class="adsbygoogle"
             style="display:inline-block;width:728px;height:90px"
             data-ad-client="ca-pub-8391255860930347"
@@ -166,39 +151,38 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
 
     <script>
-        // ... (fungsi getVisitorIP, createFingerprint, dll. dari sebelumnya) ...
-         // Fungsi untuk mendapatkan IP address pengunjung (berbasis server)
-        async function getVisitorIP() {
+      //Other functions
+      async function getVisitorIP() {
             try {
                 const response = await fetch('https://api.ipify.org?format=json');
                 const data = await response.json();
                 return data.ip;
             } catch (error) {
                 console.error("Error getting IP:", error);
-                return null; // Atau nilai default lainnya
+                return null;
             }
         }
 
-        // Fungsi untuk membuat fingerprint unik
         function createFingerprint() {
             const fingerprint = 'fingerprint-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('visitor_fingerprint', fingerprint);
             return fingerprint;
         }
 
-          // Fungsi untuk menunda eksekusi Adsense
+
         function loadAdsense() {
-             // Periksa apakah AdSense sudah dimuat
             if (typeof adsbygoogle !== 'undefined') {
                 (adsbygoogle = window.adsbygoogle || []).push({});
             } else {
                 console.warn("AdSense library not loaded yet.");
             }
         }
-        // Fungsi untuk lazy load gambar
+
         function lazyLoadImages() {
             var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 
@@ -208,7 +192,7 @@
                         if (entry.isIntersecting) {
                             let lazyImage = entry.target;
                             lazyImage.src = lazyImage.dataset.src;
-                            // lazyImage.srcset = lazyImage.dataset.srcset; // Jika menggunakan srcset
+                            // lazyImage.srcset = lazyImage.dataset.srcset;
                             lazyImage.classList.remove("lazy");
                             lazyImageObserver.unobserve(lazyImage);
                         }
@@ -219,53 +203,60 @@
                     lazyImageObserver.observe(lazyImage);
                 });
             } else {
-                // Fallback untuk browser lama
+                // Fallback
                 lazyImages.forEach(function(lazyImage){
                     lazyImage.src = lazyImage.dataset.src;
                     lazyImage.classList.remove("lazy");
                 });
-
             }
         }
+        document.addEventListener('DOMContentLoaded', () => {
+            initAntiFraud();
+            lazyLoadImages();
 
-        // Fungsi utama
+            const player = new Plyr('#player', {
+                controls: [
+                    'play-large', 'restart', 'rewind', 'play', 'fast-forward',
+                    'progress', 'current-time', 'duration', 'mute', 'volume',
+                    'captions', 'settings', 'pip', 'airplay', 'fullscreen' // 'download' removed
+                ],
+            });
+
+            const videoSource = document.getElementById('video-source');
+            if (film !== null) {
+                console.log("encryptfilm value:", encryptfilm);
+                 player.source = {
+                   type: 'video',
+                   sources: [{
+                     src: encryptfilm,
+                     type: 'video/mp4',
+                   }],
+                 };
+            }
+
+            setTimeout(loadAdsense, 500);
+        });
+
         async function initAntiFraud() {
             const referrer = document.referrer;
             const visitorIP = await getVisitorIP();
             const storedIP = localStorage.getItem('stored_ip');
             const fingerprint = localStorage.getItem('visitor_fingerprint') || createFingerprint();
 
-            // Cek apakah pengunjung berasal dari Google Search
             if (referrer.includes('google.com')) {
                 console.log('Pengunjung berasal dari Google Search.');
             } else {
                 console.log('Pengunjung bukan dari Google Search.');
-                 //Jangan return, lanjutkan untuk menampilkan iklan.
             }
 
-            // Cek IP ganda
             if (storedIP && storedIP === visitorIP) {
                 console.log('IP sudah terdaftar, potential fraud.');
-                 // Jangan return, lanjutkan, tapi mungkin log untuk analisis
             } else {
                 localStorage.setItem('stored_ip', visitorIP);
                 console.log('IP baru terdeteksi:', visitorIP);
             }
-
             console.log('Fingerprint pengunjung:', fingerprint);
-
-             //Jalankan Adsense setelah semua pengecekan.  Ini yang terpenting.
-            loadAdsense();
         }
-
-      // Tunggu DOMContentLoaded untuk memastikan semua elemen telah dimuat, termasuk script Adsense.
-        document.addEventListener('DOMContentLoaded', function() {
-            initAntiFraud();
-            lazyLoadImages(); // Panggil lazy loading gambar setelah DOM siap
-
-             // Tunda pemuatan AdSense sedikit untuk prioritas konten utama
-            setTimeout(loadAdsense, 500); // Tunda 0.5 detik, sesuaikan jika perlu
-        });
 
     </script>
 </body>
